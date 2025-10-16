@@ -7,12 +7,11 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.javafmlmod.FMLModContainer;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -22,12 +21,16 @@ public class MaznaItemLib {
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "mazna_item_lib";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
 
-    public MaznaItemLib()
+    public MaznaItemLib(FMLJavaModLoadingContext context)
     {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        IEventBus modEventBus = context.getModEventBus();
+
+        DynamicAttributeRegistry.register(modEventBus);
+        //ModItems.register(modEventBus);
 
         //FMLJavaModLoadingContext();
         // Register the commonSetup method for modloading
@@ -42,7 +45,6 @@ public class MaznaItemLib {
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
     }
 
     // Add the example block item to the building blocks tab
