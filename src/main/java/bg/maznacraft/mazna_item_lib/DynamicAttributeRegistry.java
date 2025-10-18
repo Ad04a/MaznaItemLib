@@ -43,7 +43,7 @@ public class DynamicAttributeRegistry {
             return attributes;
         }
 
-        public Multimap<Attribute, AttributeModifier> getAttributesPerSlot(EquipmentSlot slot) {
+        public Multimap<Attribute, AttributeModifier> getAttributesForSlot(EquipmentSlot slot) {
             return attributes.get(slot);
         }
     }
@@ -55,13 +55,22 @@ public class DynamicAttributeRegistry {
    // public static final ResourceKey<Registry<DynamicItemAttributes>> DYNAMIC_ATTRIBUTE_KEY__ =
      //       ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MaznaItemLib.MOD_ID, "dynamic_item_attributes"));
 
+    /*public static final ResourceKey<Registry<DynamicItemAttributes>> DYNAMIC_ATTRIBUTES;
+    //public static final IForgeRegistry<DynamicItemAttributes> DYNAMIC_ATTRIBUTE_KEY;
+    public static final DeferredRegister<DynamicItemAttributes> ITEM_ATTRIBUTE_REGISTRY;
+    public static final RegistryObject<DynamicItemAttributes> item;
 
-    //public static final ResourceKey<Registry<DynamicItemAttributes>> DYNAMIC_ATTRIBUTES   = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MaznaItemLib.MOD_ID, "dynamic_item_attributes"));
-   // public static final IForgeRegistry<DynamicItemAttributes> DYNAMIC_ATTRIBUTE_KEY = RegistryManager.ACTIVE.getRegistry(DYNAMIC_ATTRIBUTES);
+    static{
+        DYNAMIC_ATTRIBUTES = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MaznaItemLib.MOD_ID, "dynamic_item_attributes"));
 
-    //public static final DeferredRegister<DynamicItemAttributes> ITEM_ATTRIBUTE_REGISTRY = DeferredRegister.create(DYNAMIC_ATTRIBUTE_KEY,MaznaItemLib.MOD_ID);
+        if(DYNAMIC_ATTRIBUTES)
 
-    //public static final RegistryObject<DynamicItemAttributes> item = ITEM_ATTRIBUTE_REGISTRY.register("shears", DynamicItemAttributes::new);
+        //DYNAMIC_ATTRIBUTE_KEY = RegistryManager.ACTIVE.getRegistry(DYNAMIC_ATTRIBUTES);
+
+        ITEM_ATTRIBUTE_REGISTRY = DeferredRegister.create(DYNAMIC_ATTRIBUTES,MaznaItemLib.MOD_ID);
+
+
+    }*/
 
     /*public static final RegistryObject<DynamicItemAttributes> shears = ITEM_ATTRIBUTE_REGISTRY.register("shears",
             () -> {

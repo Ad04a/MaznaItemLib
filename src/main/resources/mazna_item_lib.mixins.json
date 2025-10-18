@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "mazna_item_lib.refmap.json",
   "mixins": [
+    "ItemStackMixin"
   ],
   "client": [
   ],

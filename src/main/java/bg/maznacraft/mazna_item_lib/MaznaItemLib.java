@@ -13,6 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.javafmlmod.FMLModContainer;
 import org.slf4j.Logger;
+import org.spongepowered.asm.launch.MixinBootstrap;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MaznaItemLib.MOD_ID)
@@ -29,6 +30,8 @@ public class MaznaItemLib {
 
         IEventBus modEventBus = context.getModEventBus();
 
+        MixinBootstrap.init();
+
         DynamicAttributeRegistry.register(modEventBus);
         //ModItems.register(modEventBus);
 
@@ -41,6 +44,7 @@ public class MaznaItemLib {
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
