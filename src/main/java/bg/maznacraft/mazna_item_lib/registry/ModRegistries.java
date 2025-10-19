@@ -5,6 +5,7 @@ import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttribu
 import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesEntry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.registries.DataPackRegistryEvent;
 
 
@@ -19,4 +20,5 @@ public class ModRegistries {
                 ItemAttributesEntry.CODEC    // codec for network sync to clients
         );
     }
+
 }

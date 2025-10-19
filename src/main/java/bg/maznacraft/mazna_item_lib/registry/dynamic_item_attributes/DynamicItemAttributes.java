@@ -3,8 +3,10 @@ package bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.UUIDUtil;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -36,7 +38,9 @@ public class DynamicItemAttributes {
     }
 
     // 👇 We'll define a Codec for this below
-    public static final Codec<DynamicItemAttributes> CODEC = createCodec();
+    public static final Codec<DynamicItemAttributes> CODEC_OLD = createCodec();
+
+
 
     private static Codec<DynamicItemAttributes> createCodec() {
         // Slot codec
@@ -92,5 +96,7 @@ public class DynamicItemAttributes {
                 Codec.unboundedMap(slotCodec, multimapCodec);
 
         return attributesCodec.xmap(DynamicItemAttributes::new, DynamicItemAttributes::getAttributes);
+
+
     }
 }

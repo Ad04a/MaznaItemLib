@@ -1,5 +1,9 @@
 package bg.maznacraft.mazna_item_lib;
 
+import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.DynamicItemAttributes;
+import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesDatapackRegistry;
+import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesEntry;
+import com.google.common.collect.Multimap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -17,12 +21,33 @@ import net.minecraftforge.registries.RegistryManager;
 import org.apache.commons.compress.harmony.pack200.AttributeDefinitionBands;
 import org.apache.http.config.Registry;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = MaznaItemLib.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DynamicAttributeHandler {
 
     @SubscribeEvent
+    public static void onItemAttributeModifier(ItemAttributeModifierEvent event) {
+        ItemStack stack = event.getItemStack();
+        ResourceLocation itemId = ForgeRegistries.ITEMS.getKey(stack.getItem());
+
+        //if(itemId.toString().equalsIgnoreCase("minecraft:diamond_sword")) MaznaItemLib.LOGGER.error("startup: " + itemId.toString());
+
+        // Look up the cached attributes for this item
+        Map<EquipmentSlot, Multimap<Attribute, AttributeModifier>> entry = ItemAttributesDatapackRegistry.GetDynamicAttributes(itemId);
+        if (entry == null) return;
+
+
+        //MaznaItemLib.LOGGER.error("Post attributes: " + itemId.toString());
+
+        // Apply attributes to the corresponding equipment slot
+        entry.get(event.getSlotType())
+                .forEach(event::addModifier);
+    }
+
+
+    /*@SubscribeEvent
     public static void addAttributes(ItemAttributeModifierEvent event) {
 
         //DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MaznaItemLib.MOD_ID);
@@ -52,7 +77,7 @@ public class DynamicAttributeHandler {
                 event.addModifier(def.attribute(),
                         new AttributeModifier(UUID.randomUUID(), def.name(), def.amount(), def.operation()));
             }
-        }*/
+        }
         if(event.getSlotType() == EquipmentSlot.FEET)
         {
             event.addModifier(Attributes.ARMOR,
@@ -69,5 +94,5 @@ public class DynamicAttributeHandler {
                     new AttributeModifier(UUID.randomUUID(), "fortnite", 2, AttributeModifier.Operation.ADDITION));
         }
         ItemStack.of(new CompoundTag());
-    }
+    }*/
 }

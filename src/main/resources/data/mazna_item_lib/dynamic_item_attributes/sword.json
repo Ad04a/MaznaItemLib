@@ -1,0 +1,28 @@
+{
+  "item": "minecraft:diamond_sword",
+  "attributes": {
+    "mainhand": {
+      "minecraft:generic_attack_damage": [
+        {
+          "uuid": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+          "name": "MyMod Attack Damage",
+          "amount": 5.0,
+          "operation": "add"
+        }
+      ],
+      "minecraft:generic_attack_speed": [
+        {
+          "uuid": "123e4567-e89b-12d3-a456-426614174000",
+          "name": "MyMod Attack Speed",
+          "amount": 0.2,
+          "operation": "add"
+        }
+      ]
+    },
+    "offhand": {},
+    "head": {},
+    "chest": {},
+    "legs": {},
+    "feet": {}
+  }
+}

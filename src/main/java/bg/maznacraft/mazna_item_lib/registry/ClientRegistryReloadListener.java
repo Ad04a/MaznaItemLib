@@ -22,6 +22,9 @@ public class ClientRegistryReloadListener {
 
     private static Registry<ItemAttributesEntry> lastRegistry = null;
 
+
+
+    ///MAY NEED REWORK USING CLIENTPACKETLISTENER
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;

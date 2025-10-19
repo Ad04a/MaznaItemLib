@@ -3,13 +3,29 @@ package bg.maznacraft.mazna_item_lib.registry;
 import bg.maznacraft.mazna_item_lib.MaznaItemLib;
 import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesDatapackRegistry;
 import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesEntry;
-import net.minecraft.client.Minecraft;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.MultimapBuilder;
+import com.google.gson.JsonElement;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 
 @Mod.EventBusSubscriber(modid = MaznaItemLib.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -33,7 +49,52 @@ public class DatapackSyncHandler {
 
         // Rebuild your cache
         ItemAttributesDatapackRegistry.reloadCache(registry);
-        MaznaItemLib.LOGGER.info("["+MaznaItemLib.MOD_ID+"] Server cache updated after player join");
+        MaznaItemLib.LOGGER.info("["+MaznaItemLib.MOD_ID+"] Server cache updated after player join - " +  registry.toString() + "["+registry.size()+"]");
+
+
+        /*Map<EquipmentSlot, Multimap<Attribute, AttributeModifier>> mp = new EnumMap<>(EquipmentSlot.class);
+        Multimap<Attribute, AttributeModifier> headModifiers = HashMultimap.create();
+        headModifiers.put(Attributes.ARMOR, new AttributeModifier(
+                UUID.randomUUID(),
+                "Armor modifier",
+                5.0,
+                AttributeModifier.Operation.ADDITION)
+        );
+        mp.put(EquipmentSlot.OFFHAND, headModifiers);
+
+        Multimap<Attribute, AttributeModifier> feetModifiers = HashMultimap.create();
+        feetModifiers.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(
+                UUID.randomUUID(),
+                "Armor modifier",
+                0.5,
+                AttributeModifier.Operation.ADDITION)
+        );
+        mp.put(EquipmentSlot.FEET, feetModifiers);
+
+        ItemAttributesEntry exampleEntry = new ItemAttributesEntry(ResourceLocation.fromNamespaceAndPath("minecraft", "iron_boots"), mp);
+
+        JsonElement json = ItemAttributesEntry.CODEC.encodeStart(JsonOps.INSTANCE, exampleEntry)
+                .getOrThrow(false, e -> {
+                    throw new RuntimeException("Failed to encode ItemAttributesEntry: " + e);
+                });
+
+        MaznaItemLib.LOGGER.error(json.toString());*/
+
+        for (Map.Entry<ResourceKey<ItemAttributesEntry>, ItemAttributesEntry> entry : registry.entrySet()) {
+            MaznaItemLib.LOGGER.info(" - {}", entry.getValue().item().toString());
+
+            for(EquipmentSlot slot : EquipmentSlot.values())
+            {
+                for(Attribute atr : entry.getValue().attributes().get(slot).keySet())
+                {
+                    MaznaItemLib.LOGGER.error("----" + atr.toString());
+                    for (AttributeModifier modifier : entry.getValue().attributes().get(slot).get(atr))
+                    {
+                        MaznaItemLib.LOGGER.error("     -" + modifier.toString());
+                    }
+                }
+            }
+        }
     }
 
     /*@SubscribeEvent
