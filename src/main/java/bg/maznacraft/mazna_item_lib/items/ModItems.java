@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -46,6 +47,7 @@ public class ModItems {
                 MaznaItemLib.LOGGER.error("---------------------------------------------------------------" + item.getDescriptionId());
                 //ForgeRegistries.ITEMS.
                 //ForgeRegistries.ITEMS.getValue();
+                //Arrow
             }
         }
     }

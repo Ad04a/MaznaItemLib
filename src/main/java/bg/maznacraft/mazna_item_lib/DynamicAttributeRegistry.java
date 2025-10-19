@@ -2,16 +2,12 @@ package bg.maznacraft.mazna_item_lib;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.MultimapBuilder;
-import com.google.common.collect.SetMultimap;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.*;
 
@@ -20,11 +16,11 @@ import java.util.*;
 //@Mod.EventBusSubscriber(modid = MaznaItemLib.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DynamicAttributeRegistry {
 
-    public static class DynamicItemAttributes
+    public static class DynamicItemAttributes_Old
     {
         private Map<EquipmentSlot, Multimap<Attribute, AttributeModifier>> attributes;
 
-        public DynamicItemAttributes()
+        public DynamicItemAttributes_Old()
         {
             attributes = new EnumMap<>(EquipmentSlot.class);
 
@@ -34,7 +30,7 @@ public class DynamicAttributeRegistry {
             }
         }
 
-        public DynamicItemAttributes(Map<EquipmentSlot, Multimap<Attribute, AttributeModifier>> InAttributes)
+        public DynamicItemAttributes_Old(Map<EquipmentSlot, Multimap<Attribute, AttributeModifier>> InAttributes)
         {
             attributes = InAttributes;
         }
@@ -55,22 +51,8 @@ public class DynamicAttributeRegistry {
    // public static final ResourceKey<Registry<DynamicItemAttributes>> DYNAMIC_ATTRIBUTE_KEY__ =
      //       ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MaznaItemLib.MOD_ID, "dynamic_item_attributes"));
 
-    /*public static final ResourceKey<Registry<DynamicItemAttributes>> DYNAMIC_ATTRIBUTES;
-    //public static final IForgeRegistry<DynamicItemAttributes> DYNAMIC_ATTRIBUTE_KEY;
-    public static final DeferredRegister<DynamicItemAttributes> ITEM_ATTRIBUTE_REGISTRY;
-    public static final RegistryObject<DynamicItemAttributes> item;
-
-    static{
-        DYNAMIC_ATTRIBUTES = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MaznaItemLib.MOD_ID, "dynamic_item_attributes"));
-
-        if(DYNAMIC_ATTRIBUTES)
-
-        //DYNAMIC_ATTRIBUTE_KEY = RegistryManager.ACTIVE.getRegistry(DYNAMIC_ATTRIBUTES);
-
-        ITEM_ATTRIBUTE_REGISTRY = DeferredRegister.create(DYNAMIC_ATTRIBUTES,MaznaItemLib.MOD_ID);
 
 
-    }*/
 
     /*public static final RegistryObject<DynamicItemAttributes> shears = ITEM_ATTRIBUTE_REGISTRY.register("shears",
             () -> {
@@ -127,7 +109,34 @@ public class DynamicAttributeRegistry {
     {
 
         //PER_ITEM_ATTRIBUTES.makeRegistry(() -> )
-       //ITEM_ATTRIBUTE_REGISTRY.register(eventBus);
+
+        //final ResourceKey<Registry<Block>> ITEM_ATTRIBUTES_TEMP = ResourceKey.createRegistryKey(new ResourceLocation(pName);
+
+         /*ResourceKey<Registry<DynamicItemAttributes_Old>> DYNAMIC_ATTRIBUTES;
+        //public static final IForgeRegistry<DynamicItemAttributes> DYNAMIC_ATTRIBUTE_KEY;
+         DeferredRegister<DynamicItemAttributes_Old> ITEM_ATTRIBUTE_REGISTRY;
+         RegistryObject<DynamicItemAttributes_Old> item;
+
+         ResourceLocation RL = ResourceLocation.fromNamespaceAndPath(MaznaItemLib.MOD_ID, "dynamic_item_attributes");
+
+         RegistryBuilder<DynamicItemAttributes_Old> RB = RegistryBuilder.of(RL);
+         //DataPackRegistryEvent.NewRegistry
+
+         RegistryManager RM = new RegistryManager("ITEM_ATTRIBUTES");
+        // RM.
+        //Registries
+
+         DYNAMIC_ATTRIBUTES = ResourceKey.createRegistryKey(RL);
+
+         //DYNAMIC_ATTRIBUTE_KEY = RegistryManager.ACTIVE.getRegistry(DYNAMIC_ATTRIBUTES);
+
+        ITEM_ATTRIBUTE_REGISTRY = DeferredRegister.create(DYNAMIC_ATTRIBUTES,MaznaItemLib.MOD_ID);
+
+        item = ITEM_ATTRIBUTE_REGISTRY.register("fortnite", DynamicItemAttributes_Old::new);
+
+        ITEM_ATTRIBUTE_REGISTRY.register(eventBus);*/
+
+        //GameData
 
     }
 }

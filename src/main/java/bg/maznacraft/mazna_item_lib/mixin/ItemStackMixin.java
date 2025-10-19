@@ -1,7 +1,6 @@
 package bg.maznacraft.mazna_item_lib.mixin;
 
 import bg.maznacraft.mazna_item_lib.DynamicAttributeRegistry;
-import bg.maznacraft.mazna_item_lib.MaznaItemLib;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -17,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
     @Unique
-    private DynamicAttributeRegistry.DynamicItemAttributes dynamicAttributes;
+    private DynamicAttributeRegistry.DynamicItemAttributes_Old dynamicAttributes;
 
     @Inject(method = "getAttributeModifiers", at = @At("RETURN"), cancellable = true)
     private void injectAttributes(EquipmentSlot pSlot, CallbackInfoReturnable<Multimap<Attribute, AttributeModifier>> cir) {
@@ -33,12 +32,12 @@ public abstract class ItemStackMixin {
     }
 
     @Unique
-    public void setDynamicAttributes(DynamicAttributeRegistry.DynamicItemAttributes attrs) {
+    public void setDynamicAttributes(DynamicAttributeRegistry.DynamicItemAttributes_Old attrs) {
         this.dynamicAttributes = attrs;
     }
 
     @Unique
-    public DynamicAttributeRegistry.DynamicItemAttributes getDynamicAttributes() {
+    public DynamicAttributeRegistry.DynamicItemAttributes_Old getDynamicAttributes() {
         return dynamicAttributes;
     }
 }
