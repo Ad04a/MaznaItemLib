@@ -28,9 +28,8 @@ public class ReloadSyncHandler {
 
     @SubscribeEvent
     public static void onPlayerJoin(EntityJoinLevelEvent event) {
-        ServerPlayer player = (ServerPlayer) event.getEntity();
-        if (player != null) {
-
+        if(event.getEntity() instanceof ServerPlayer player)
+        {
             SyncItemAttributesPacket packet = new SyncItemAttributesPacket(ItemAttributesDataCache.all());
             ModNetworking.ATTRIBUTE_CHANNEL.send( PacketDistributor.PLAYER.with(() -> player), packet);
 

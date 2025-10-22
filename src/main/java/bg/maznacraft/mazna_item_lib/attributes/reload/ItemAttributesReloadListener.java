@@ -41,7 +41,11 @@ public class ItemAttributesReloadListener extends SimpleJsonResourceReloadListen
         }
 
         ItemAttributesDataCache.putAll(parsed);
-        MaznaItemLib.LOGGER.info("Loaded {} item attribute entries", parsed.size());
+        MaznaItemLib.LOGGER.info("Loaded {} item attribute entries------------------------------------------------------------", parsed.size());
+        for(ResourceLocation RL : parsed.keySet())
+        {
+            MaznaItemLib.LOGGER.info(" - " + RL.toString() + ":   " + parsed.get(RL).toString());
+        }
 
         MinecraftServer server = net.minecraftforge.server.ServerLifecycleHooks.getCurrentServer();
         if (server != null) {
