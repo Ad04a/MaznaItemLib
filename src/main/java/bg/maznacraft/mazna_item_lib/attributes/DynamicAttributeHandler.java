@@ -1,7 +1,8 @@
 package bg.maznacraft.mazna_item_lib.attributes;
 
 import bg.maznacraft.mazna_item_lib.MaznaItemLib;
-import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesDatapackRegistry;
+
+import bg.maznacraft.mazna_item_lib.attributes.data.ItemAttributesDataCache;
 import com.google.common.collect.Multimap;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -26,7 +27,7 @@ public class DynamicAttributeHandler {
         //if(itemId.toString().equalsIgnoreCase("minecraft:diamond_sword")) MaznaItemLib.LOGGER.error("startup: " + itemId.toString());
 
         // Look up the cached attributes for this item
-        Map<EquipmentSlot, Multimap<Attribute, AttributeModifier>> entry = ItemAttributesDatapackRegistry.GetDynamicAttributes(itemId);
+        Map<EquipmentSlot, Multimap<Attribute, AttributeModifier>> entry = ItemAttributesDataCache.get(itemId).attributes();// = ItemAttributesDatapackRegistry.GetDynamicAttributes(itemId);
         if (entry == null) return;
 
 
