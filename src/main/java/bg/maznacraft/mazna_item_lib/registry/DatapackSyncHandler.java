@@ -1,31 +1,23 @@
 package bg.maznacraft.mazna_item_lib.registry;
 
 import bg.maznacraft.mazna_item_lib.MaznaItemLib;
+import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.DynamicAttributeReloadListener;
 import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesDatapackRegistry;
-import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesEntry;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.MultimapBuilder;
-import com.google.gson.JsonElement;
-import com.mojang.serialization.JsonOps;
+import bg.maznacraft.mazna_item_lib.attributes.data.ItemAttributesEntry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 
-import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 
 @Mod.EventBusSubscriber(modid = MaznaItemLib.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -106,4 +98,10 @@ public class DatapackSyncHandler {
 
         ItemAttributesDatapackRegistry.reloadCache(registry);  // client-side cache
     }*/
+
+    @SubscribeEvent
+    public static void onAddReloadListeners(AddReloadListenerEvent event) {
+        DynamicAttributeReloadListener DynamicAttributeListener = new DynamicAttributeReloadListener();
+        event.addListener(DynamicAttributeListener);
+    }
 }

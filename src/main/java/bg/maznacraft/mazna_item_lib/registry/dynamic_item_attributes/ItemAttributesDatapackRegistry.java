@@ -1,6 +1,7 @@
 package bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes;
 
 import bg.maznacraft.mazna_item_lib.MaznaItemLib;
+import bg.maznacraft.mazna_item_lib.attributes.data.ItemAttributesEntry;
 import com.google.common.collect.Multimap;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;

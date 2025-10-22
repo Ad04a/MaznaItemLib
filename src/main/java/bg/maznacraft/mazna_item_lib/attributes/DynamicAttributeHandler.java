@@ -1,28 +1,19 @@
-package bg.maznacraft.mazna_item_lib;
+package bg.maznacraft.mazna_item_lib.attributes;
 
-import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.DynamicItemAttributes;
+import bg.maznacraft.mazna_item_lib.MaznaItemLib;
 import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesDatapackRegistry;
-import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesEntry;
 import com.google.common.collect.Multimap;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryManager;
-import org.apache.commons.compress.harmony.pack200.AttributeDefinitionBands;
-import org.apache.http.config.Registry;
 
 import java.util.Map;
-import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = MaznaItemLib.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DynamicAttributeHandler {

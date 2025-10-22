@@ -24,6 +24,9 @@ public class MaznaItemLib {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    public static final String ATTRIBUTE_PATH = "item_attributes";
+    public static final String ATTRIBUTE_NETWORK_PATH = "item_attributes";
+
 
     public MaznaItemLib(FMLJavaModLoadingContext context)
     {
@@ -32,8 +35,10 @@ public class MaznaItemLib {
 
         MixinBootstrap.init();
 
-        DynamicAttributeRegistry.register(modEventBus);
+        //DynamicAttributeRegistry.register(modEventBus);
         //ModItems.register(modEventBus);
+
+        ModNetworking.register();
 
         //FMLJavaModLoadingContext();
         // Register the commonSetup method for modloading

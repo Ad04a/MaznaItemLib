@@ -1,6 +1,7 @@
 package bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes;
 
 import bg.maznacraft.mazna_item_lib.MaznaItemLib;
+import bg.maznacraft.mazna_item_lib.attributes.data.ItemAttributesEntry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -19,23 +20,16 @@ public class DynamicAttributeReloadListener extends SimpleJsonResourceReloadList
     private static Map<ResourceLocation, ItemAttributesEntry> dataMap = Map.of();
 
     public DynamicAttributeReloadListener() {
-        super(GSON, "custom_attributes");
+        super(GSON, "dynamic_item_attributes");
     }
 
     @Override
-    protected Map<ResourceLocation, JsonElement> prepare(
-            ResourceManager resourceManager,
-            ProfilerFiller profiler
-    ) {
+    protected Map<ResourceLocation, JsonElement> prepare(ResourceManager resourceManager, ProfilerFiller profiler) {
         return super.prepare(resourceManager, profiler);
     }
 
     @Override
-    protected void apply(
-            Map<ResourceLocation, JsonElement> prepared,
-            ResourceManager resourceManager,
-            ProfilerFiller profiler
-    ) {
+    protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager resourceManager, ProfilerFiller profiler) {
         Map<ResourceLocation, ItemAttributesEntry> tempMap = new HashMap<>();
 
         prepared.forEach((id, jsonElement) -> {

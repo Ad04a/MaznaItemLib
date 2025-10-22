@@ -2,10 +2,9 @@ package bg.maznacraft.mazna_item_lib.registry;
 
 import bg.maznacraft.mazna_item_lib.MaznaItemLib;
 import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesDatapackRegistry;
-import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesEntry;
+import bg.maznacraft.mazna_item_lib.attributes.data.ItemAttributesEntry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.registries.DataPackRegistryEvent;
 
 

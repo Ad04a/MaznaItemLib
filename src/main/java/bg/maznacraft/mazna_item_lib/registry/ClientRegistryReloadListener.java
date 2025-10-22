@@ -1,20 +1,14 @@
 package bg.maznacraft.mazna_item_lib.registry;
 
 import bg.maznacraft.mazna_item_lib.MaznaItemLib;
-import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.DynamicItemAttributes;
 import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesDatapackRegistry;
-import bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes.ItemAttributesEntry;
+import bg.maznacraft.mazna_item_lib.attributes.data.ItemAttributesEntry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
-import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
-import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = MaznaItemLib.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ClientRegistryReloadListener {

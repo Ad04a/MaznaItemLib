@@ -1,4 +1,4 @@
-package bg.maznacraft.mazna_item_lib.registry.dynamic_item_attributes;
+package bg.maznacraft.mazna_item_lib.attributes.data;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -6,14 +6,12 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public record ItemAttributesEntry(ResourceLocation item,
         Map<EquipmentSlot, Multimap<Attribute, AttributeModifier>> attributes) {
